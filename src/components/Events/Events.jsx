@@ -1,6 +1,7 @@
 import EventItem from "./components/EventItem/EventItem";
 import { useState } from "react";
 import eventsJSON from "../../data/events.json";
+import { useNavigate } from "react-router-dom";
 
 //console.log(data);
 
@@ -8,11 +9,12 @@ import eventsJSON from "../../data/events.json";
 
 export default function Events({ searchTerm }) {
   const [data] = useState(eventsJSON);
+  const navigate = useNavigate();
   const {
     _embedded: { events },
   } = data;
   const handleEventItemClick = (id) => {
-    console.log("Evento clickeado", id);
+    navigate(`/detail/${id}`);
   };
 
   const renderEvents = () => {
@@ -38,7 +40,7 @@ export default function Events({ searchTerm }) {
 
   return (
     <div>
-      Eventos
+      <h1 className=" mb-8 font-bold">Eventos</h1>
       {renderEvents()}
     </div>
   );

@@ -15,9 +15,11 @@ const Navbar = ({ onSearch }) => {
   console.log(search);
 
   return (
-    <div>
-      <p>Mi boletera</p>
+    <div className=" mb-4 w-ful flex items-center justify-between">
+      <p className=" text-2xl font-bold">Mi boletera</p>
+
       <input
+        className=" text-base py-2 px-3 rounded-md w-52"
         type="text"
         placeholder="Busca tu evento favorito"
         onChange={handleInputChangue}
