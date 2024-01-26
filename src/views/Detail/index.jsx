@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { format } from "date-fns";
 
 export default function Detail() {
   const { eventId } = useParams();
@@ -25,7 +26,9 @@ export default function Detail() {
     };
     fetchEventData();
   }, []);
-  //console.log(eventData);
+  // console.log(dateTimeevent);
+  // console.log(eventData);
+
   if (isLoading && Object.keys(eventData) === 0) {
     return <div>Cargando evento...</div>;
   }
@@ -39,6 +42,11 @@ export default function Detail() {
         <img src={eventData.images?.[0].url} alt="" />
         <h4>{eventData.name}</h4>
         <p>{eventData.info}</p>
+        {eventData.dates?.start?.dateTime ? (
+          <p>
+            {format(new Date(eventData.dates?.start?.dateTime), "MM/dd/yyyy")}
+          </p>
+        ) : null}
       </div>
     </div>
   );
