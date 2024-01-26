@@ -26,5 +26,20 @@ export default function Detail() {
     fetchEventData();
   }, []);
   //console.log(eventData);
-  return <div>Detail</div>;
+  if (isLoading && Object.keys(eventData) === 0) {
+    return <div>Cargando evento...</div>;
+  }
+
+  if (Object.keys(error) > 0) {
+    return <div>Ha habido un error</div>;
+  }
+  return (
+    <div className="">
+      <div className="">
+        <img src={eventData.images?.[0].url} alt="" />
+        <h4>{eventData.name}</h4>
+        <p>{eventData.info}</p>
+      </div>
+    </div>
+  );
 }
