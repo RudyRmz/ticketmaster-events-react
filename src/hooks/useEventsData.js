@@ -9,13 +9,13 @@ export default function useEventsData() {
   const fetchEvents = async (params) => {
     try {
       const response = await fetch(
-        `https://app.ticketmaster.com/discovery/v2/events.json?apikey=37wchGrCGX0FRh41utv4Ji8AgYWeGqZ3&countryCode=MX${
-          params?.length ? params : ""
-        }`
+        `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${
+          import.meta.env.VITE_TICKETMASTER_API_KEY
+        }&countryCode=MX${params?.length ? params : ""}`
       );
       const data = await response.json();
       setData(data);
-      console.log(data);
+      //console.log(data);
       setIsLoading(false);
     } catch (error) {}
   };
