@@ -5,10 +5,14 @@ import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import useEventsData from "../../hooks/useEventsData";
 import ReactPaginate from "react-paginate";
 import { clsx } from "clsx";
+import useEventsResults from "../../state/events-results";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
-  const { events, isLoading, isError, fetchEvents, page } = useEventsData();
+  const { data, isLoading, error, fetchEvents } = useEventsResults();
+  console.log(data);
+  const events = data?._embedded?.events || [];
+  const page = data?.page || {};
   const handleNavbarSearch = (term) => {
     setSearchTerm(term);
     fetchEvents(`&keyword=${term}`);
@@ -28,7 +32,7 @@ export default function Home() {
     if (isLoading) {
       return <p>Cargando información...</p>;
     }
-    if (isError) {
+    if (error) {
       return <p>Ha ocurrido un error</p>;
     }
 
