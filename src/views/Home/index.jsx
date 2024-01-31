@@ -10,7 +10,7 @@ import useEventsResults from "../../state/events-results";
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const { data, isLoading, error, fetchEvents } = useEventsResults();
-  console.log(data);
+  //console.log(data);
   const events = data?._embedded?.events || [];
   const page = data?.page || {};
   const handleNavbarSearch = (term) => {
